@@ -34,12 +34,12 @@ object sql {
           (id, name, lat, lon, dockcount, landmark, installation)
         }
 
-    val stationDF = stationRDD.
-      map { case (id, name, lat, lon, dockcount, landmark, installation) =>
-        Station(id, name, lat, lon, dockcount, landmark, installation)
-      }.toDF().cache()
-
-    val rdd: RDD[Row] = stationDF.rdd
+//    val stationDF = stationRDD.
+//      map { case (id, name, lat, lon, dockcount, landmark, installation) =>
+//        Station(id, name, lat, lon, dockcount, landmark, installation)
+//      }.toDF().cache()
+//
+//    val rdd: RDD[Row] = stationDF.rdd
   }
 }
 
