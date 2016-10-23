@@ -6,17 +6,19 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 object twitterSample {
 
-  val sc = new SparkContext()
-  val ssc = new StreamingContext(sc, Seconds(5))
+  def main(args: Array[String]): Unit = {
+    val sc = new SparkContext()
+    val ssc = new StreamingContext(sc, Seconds(5))
 
-  System.setProperty("twitter4j.oauth.consumerKey", "xxx")
-  System.setProperty("twitter4j.oauth.consumerSecret", "xxx")
-  System.setProperty("twitter4j.oauth.accessToken", "xxx-xxx")
-  System.setProperty("twitter4j.oauth.accessTokenSecret", "xxx")
+    System.setProperty("twitter4j.oauth.consumerKey", "xxx")
+    System.setProperty("twitter4j.oauth.consumerSecret", "xxx")
+    System.setProperty("twitter4j.oauth.accessToken", "xxx-xxx")
+    System.setProperty("twitter4j.oauth.accessTokenSecret", "xxx")
 
-  val twitterStream = TwitterUtils.createStream(ssc, None)
-  val tweets = twitterStream.map(tweet => tweet.getUser.getId + ":" + tweet.getText)
-  tweets.print
+    val twitterStream = TwitterUtils.createStream(ssc, None)
+    val tweets = twitterStream.map(tweet => tweet.getUser.getId + ":" + tweet.getText)
+    tweets.print
 
-  ssc.start
+    ssc.start
+  }
 }
